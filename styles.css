@@ -94,19 +94,17 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
 .nav.solid { background: #fff; }
 .nav.solid[data-theme="sand"] { background: var(--sand); }
 .nav.solid[data-theme="ink"] { background: var(--ink); }
-.nav.solid[data-theme="red"] { background: var(--red); }
-.nav[data-theme="ink"], .nav[data-theme="red"] { color: #fff; }
+.nav.solid[data-theme="red"] { background: #fff; }
+.nav[data-theme="ink"] { color: #fff; }
 .nav.hide { transform: translateY(-100%); }
 .logo { display: inline-flex; align-items: center; gap: 10px; font: 600 16px/1 var(--sans); letter-spacing: -0.02em; white-space: nowrap; }
 .logo svg { width: 24px; height: 24px; color: var(--red); transition: color 0.24s var(--ease), transform 0.5s var(--arrive); }
 .logo:hover svg { transform: skewX(-8deg); }
-.nav[data-theme="red"] .logo svg { color: #fff; }
 .nlinks { display: none; align-items: center; gap: 2px; }
 .ni { position: relative; }
 .ni > a, .ni > button { position: relative; height: 40px; padding: 0 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; font-size: 15px; transition: background-color 0.18s var(--ease); }
 .ni > a:hover, .ni > button:hover, .ni.open > button { background: color-mix(in srgb, currentColor 9%, transparent); }
 .ni.cur > a::after, .ni.cur > button::after { content: ""; position: absolute; left: 50%; bottom: 3px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--red); }
-.nav[data-theme="red"] .ni.cur > a::after, .nav[data-theme="red"] .ni.cur > button::after { background: #fff; }
 .ni .chev { width: 14px; height: 14px; transition: transform 0.24s var(--ease); }
 .ni.open .chev { transform: rotate(180deg); }
 .dd {
@@ -126,7 +124,6 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
 .nright { display: flex; align-items: center; gap: 8px; }
 .nlogin { display: none; height: 40px; padding: 0 14px; border-radius: 999px; align-items: center; font-size: 15px; transition: background-color 0.18s var(--ease); }
 .nlogin:hover { background: color-mix(in srgb, currentColor 9%, transparent); }
-.nav[data-theme="red"] .btn-red { background: #fff; color: var(--red); }
 .burger { width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; background: color-mix(in srgb, currentColor 9%, transparent); }
 .burger i { display: block; width: 18px; height: 1.6px; background: currentColor; position: relative; transition: background-color 0.2s; }
 .burger i::before, .burger i::after { content: ""; position: absolute; left: 0; width: 18px; height: 1.6px; background: currentColor; transition: transform 0.28s var(--ease); }
@@ -546,3 +543,13 @@ main { position: relative; z-index: 2; background: #fff; }
   .js .shot.reveal { clip-path: none; } .js .shot.reveal img { transform: none; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
+
+/* ---------- WMU logo ---------- */
+.logo img { display: block; height: 46px; width: auto; aspect-ratio: 406 / 146; }
+@media (max-width: 560px) { .logo img { height: 38px; } }
+.logo .lg-w { display: none; }
+.nav[data-theme="ink"] .logo .lg-c { display: none; }
+.nav[data-theme="ink"] .logo .lg-w { display: block; }
+.menu-open .nav .logo .lg-c { display: block; }
+.menu-open .nav .logo .lg-w { display: none; }
+.fgrid .co .flogo { display: block; width: min(280px, 72%); height: auto; }
