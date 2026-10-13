@@ -25,64 +25,11 @@
       (entries) => entries.forEach((e) => {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       }),
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+      { rootMargin: '0px 0px -6% 0px', threshold: 0.06 }
     );
-    items.forEach((el, i) => {
-      el.style.transitionDelay = `${(i % 4) * 70}ms`;
-      io.observe(el);
-    });
+    items.forEach((el, i) => { el.style.transitionDelay = `${(i % 3) * 60}ms`; io.observe(el); });
   } else {
     items.forEach((el) => el.classList.add('in'));
-  }
-
-  // Seamless marquees: duplicate each track once
-  document.querySelectorAll('.marquee-track').forEach((track) => {
-    [...track.children].forEach((n) => {
-      const c = n.cloneNode(true);
-      c.setAttribute('aria-hidden', 'true');
-      track.appendChild(c);
-    });
-  });
-
-  // Carousels with prev / next arrows
-  document.querySelectorAll('[data-carousel]').forEach((wrap) => {
-    const carousel = wrap.querySelector('.carousel');
-    const prev = wrap.querySelector('[data-prev]');
-    const next = wrap.querySelector('[data-next]');
-    if (!carousel || !prev || !next) return;
-    const step = () => (carousel.querySelector('.card')?.offsetWidth || 300) + 8;
-    const sync = () => {
-      prev.disabled = carousel.scrollLeft <= 2;
-      next.disabled = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 2;
-    };
-    prev.addEventListener('click', () => carousel.scrollBy({ left: -step(), behavior: 'smooth' }));
-    next.addEventListener('click', () => carousel.scrollBy({ left: step(), behavior: 'smooth' }));
-    carousel.addEventListener('scroll', sync, { passive: true });
-    window.addEventListener('resize', sync);
-    sync();
-  });
-
-  // Hero "Know More" typing loop
-  const typed = document.querySelector('[data-words]');
-  if (typed && !reduce) {
-    let words;
-    try { words = JSON.parse(typed.dataset.words); } catch (e) { words = []; }
-    if (words.length > 1) {
-      let w = 0, i = words[0].length, deleting = true;
-      const tick = () => {
-        const word = words[w];
-        if (deleting) {
-          i--;
-          if (i <= 0) { deleting = false; w = (w + 1) % words.length; }
-        } else {
-          i++;
-          if (i >= words[w].length) { deleting = true; typed.textContent = words[w]; return setTimeout(tick, 1800); }
-        }
-        typed.textContent = (deleting ? word : words[w]).slice(0, Math.max(i, 0));
-        setTimeout(tick, deleting ? 40 : 75);
-      };
-      setTimeout(tick, 2200);
-    }
   }
 
   // Get in Touch form: opens the visitor's email app addressed to WMU
@@ -109,7 +56,6 @@
     });
   }
 
-  // Footer year
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 })();
