@@ -192,7 +192,8 @@ button { background: none; border: 0; cursor: pointer; }
 .mobile-panel a { display: block; padding: 12px 0; color: var(--w80); border-bottom: 1px solid var(--w10); }
 .mobile-panel a[aria-current="page"] { color: var(--white); box-shadow: inset 2px 0 0 var(--red); padding-left: 12px; }
 .mobile-panel a.sub { padding-left: 16px; color: var(--w60); font-size: 15px; }
-.mobile-panel .btn { margin-top: 20px; width: 100%; padding-left: 24px; }
+.mobile-panel .btn { display: flex; margin-top: 20px; width: 100%; }
+.mobile-panel .mp-label { display: block; padding: 14px 0 6px; font-family: var(--mono); font-size: 13px; color: var(--red-300); }
 
 @media (min-width: 640px) { .nav-login { display: inline-flex; } }
 @media (min-width: 1180px) {
