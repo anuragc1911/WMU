@@ -336,7 +336,8 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
 /* ---------- allocation explorer ---------- */
 .alloc { display: grid; gap: 40px; align-items: center; }
 @media (min-width: 960px) { .alloc { grid-template-columns: 0.9fr 1.1fr; gap: 80px; } }
-.donut { position: relative; max-width: 420px; width: 100%; margin: 0 auto; aspect-ratio: 1; }
+.alloc > *, .ix > *, .story > *, .cycle > *, .contact > * { min-width: 0; }
+.donut { position: relative; max-width: min(420px, 100%); width: 100%; margin: 0 auto; aspect-ratio: 1; }
 .donut svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 .donut .base { fill: none; stroke: var(--ink); stroke-width: 26; }
 .donut .risk { fill: none; stroke: var(--red); stroke-width: 26; transition: stroke-dasharray 0.8s var(--arrive); }
