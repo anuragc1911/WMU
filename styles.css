@@ -107,9 +107,9 @@ button { background: none; border: 0; cursor: pointer; padding: 0; }
   .burger { display: none; }
 }
 .mobile {
-  position: fixed; inset: 0; z-index: 40; background: #fff;
+  position: fixed; inset: 0; z-index: 45; background: #fff;
   padding: 96px 24px 32px; overflow-y: auto;
-  opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.3s var(--ease);
+  opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity 0.2s ease, transform 0.25s var(--ease), visibility 0.2s;
   display: flex; flex-direction: column;
 }
 .menu-open .mobile { opacity: 1; visibility: visible; transform: none; }
@@ -441,3 +441,48 @@ button { background: none; border: 0; cursor: pointer; padding: 0; }
   .marquee .track { animation: none; }
   .js [data-r] { opacity: 1; transform: none; transition: none; }
 }
+
+/* ==========================================================================
+   People
+   ========================================================================== */
+.leaders { display: grid; gap: 72px; }
+.leader { display: grid; gap: 28px; }
+@media (min-width: 900px) { .leader { grid-template-columns: 340px 1fr; gap: 64px; align-items: start; } .leader:nth-child(even) { grid-template-columns: 1fr 340px; } .leader:nth-child(even) .photo { order: 2; } }
+.photo { position: relative; overflow: hidden; background: var(--row); aspect-ratio: 2 / 3; }
+.leader .photo { max-width: 340px; }
+.photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: transform 1.2s var(--ease); }
+.photo::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.8s var(--ease); }
+.leader:hover .photo img, .member:hover .photo img { transform: scale(1.04); }
+.leader:hover .photo::after, .member:hover .photo::after { transform: scaleX(1); }
+.leader h3 { margin-top: 10px; font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.04em; }
+@media (min-width: 768px) { .leader h3 { font-size: 52px; } }
+.leader .bio { margin-top: 20px; color: var(--ink70); font-size: 16px; line-height: 1.75; max-width: 640px; }
+.leader .int { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--gray200); max-width: 640px; }
+.leader .int p { margin-top: 6px; color: var(--ink70); font-size: 15px; }
+.in-link { margin-top: 22px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--ink); transition: color 0.2s ease; }
+.in-link:hover { color: var(--red); }
+.in-link svg { width: 18px; height: 18px; }
+.advisors { display: grid; gap: 16px; }
+@media (min-width: 900px) { .advisors { grid-template-columns: 1fr 1fr; } }
+.advisor { border: 1px solid var(--gray200); padding: 32px 28px; transition: border-color 0.25s ease; }
+.advisor:hover { border-color: var(--red); }
+.advisor h3 { margin-top: 10px; font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.1; letter-spacing: -0.035em; }
+.advisor p { margin-top: 14px; color: var(--ink70); font-size: 15px; line-height: 1.75; }
+.team { display: grid; gap: 28px 16px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 900px) { .team { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1100px) { .team { grid-template-columns: repeat(4, 1fr); gap: 36px 20px; } }
+.member .photo { aspect-ratio: 3 / 4; }
+.member .photo .ov { position: absolute; inset: 0; background: linear-gradient(to top, rgba(215, 25, 32, 0.55), rgba(215, 25, 32, 0) 55%); opacity: 0; transition: opacity 0.5s ease; }
+.member:hover .photo .ov { opacity: 1; }
+.member .meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding-top: 14px; }
+.member b { display: block; font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.2; letter-spacing: -0.02em; }
+@media (min-width: 768px) { .member b { font-size: 23px; } }
+.member small { display: block; margin-top: 4px; font-size: 12.5px; color: var(--ink50); line-height: 1.4; }
+.member a { color: var(--ink40); transition: color 0.2s ease; flex-shrink: 0; padding-top: 4px; }
+.member a:hover { color: var(--red); }
+.member a svg { width: 18px; height: 18px; }
+
+/* services */
+.rows.two { grid-template-columns: 1fr; }
+@media (min-width: 800px) { .rows.two { grid-template-columns: 1fr 1fr; } }
+.rows.two li { align-items: flex-start; }

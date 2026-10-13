@@ -15,6 +15,8 @@ Live: https://anuragc1911.github.io/WMU/
 | `about-you.html` | [About You](https://www.wmuindia.com/about-you/) |
 | `products.html` | [Products](https://www.wmuindia.com/products/) |
 | `wmu-advantage.html` | [WMU Advantage](https://www.wmuindia.com/wmu-advantage/) |
+| `people.html` | [People](https://www.wmuindia.com/people/) |
+| `private-wealth-management.html`, `family-office.html`, `investment-banking.html` | Services pages |
 | `blog.html` + `blog-*.html` | [Blog](https://www.wmuindia.com/category/blog/) and its three posts |
 
 Shared files: `styles.css` (all styling), `script.js` (nav, mobile menu, scroll reveals, boomerang video, Get in Touch form), `assets/blog/` (images from the original blog posts).
