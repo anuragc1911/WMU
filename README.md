@@ -1,15 +1,26 @@
-# Wealth Managers United — Products
+# Wealth Managers United — website
 
-A redesign of the [WMU Products page](https://www.wmuindia.com/products/) in the visual style of the
-[WriteMate AI](https://writemate.demos.tailgrids.com/) template: near-black canvas, hairline frame lines,
-Inter + monospace buttons, and a soft blue → violet → pink glow. Content is kept as on the original page.
+A redesign of [wmuindia.com](https://www.wmuindia.com/) in the visual style of the
+[WriteMate AI](https://writemate.demos.tailgrids.com/) template, recoloured to black with WMU red accents.
+Content is kept as on the original pages.
 
-## Files
+Live: https://anuragc1911.github.io/WMU/
 
-- `index.html` — page markup (header, hero, asset-class marquee, products carousel, Equities, Fixed Income,
-  Property / Commodities / Private Equity, Derivatives & Insurance, Get in Touch, footer)
-- `styles.css` — all styling, no framework
-- `script.js` — mobile menu, scroll reveal, marquee loop, carousel arrows, hero typing effect
+## Pages
 
-No build step or dependencies. Open `index.html` in a browser, or host the repo on any static host
-(GitHub Pages, Vercel, Netlify).
+| File | Original page |
+| --- | --- |
+| `index.html` | [About Us](https://www.wmuindia.com/about-us/) |
+| `about-you.html` | [About You](https://www.wmuindia.com/about-you/) |
+| `products.html` | [Products](https://www.wmuindia.com/products/) |
+| `wmu-advantage.html` | [WMU Advantage](https://www.wmuindia.com/wmu-advantage/) |
+| `blog.html` + `blog-*.html` | [Blog](https://www.wmuindia.com/category/blog/) and its three posts |
+
+Shared files: `styles.css` (all styling), `script.js` (menu, scroll reveal, marquees, carousels,
+typing effect, Get in Touch form), `assets/blog/` (images from the original blog posts).
+
+The Get in Touch form opens the visitor's email app addressed to feedback@wmuindia.com, since
+GitHub Pages cannot process form submissions. Swap in a form service (Formspree, Basin, etc.)
+to receive submissions directly.
+
+No build step or dependencies.
