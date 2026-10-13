@@ -135,7 +135,7 @@ button { background: none; border: 0; cursor: pointer; padding: 0; }
 
 .hero-copy { position: relative; z-index: 10; text-align: center; padding: 96px 16px 0; display: flex; flex-direction: column; align-items: center; }
 @media (min-width: 640px) { .hero-copy { padding: 104px 24px 0; } }
-@media (min-width: 768px) { .hero-copy { padding-top: 128px; } }
+@media (min-width: 768px) { .hero-copy { padding-top: 112px; } }
 .display { font-family: var(--serif); font-weight: 400; font-size: 36px; line-height: 1.1; letter-spacing: -0.05em; color: var(--ink); }
 @media (min-width: 640px) { .display { font-size: 48px; } }
 @media (min-width: 768px) { .display { font-size: 72px; } }
@@ -148,24 +148,25 @@ button { background: none; border: 0; cursor: pointer; padding: 0; }
 .hero-sub.wide { max-width: 560px; }
 .hero-cta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 @media (min-width: 640px) { .hero-cta { margin-top: 32px; } }
-@media (min-width: 768px) { .hero-cta { margin-top: 40px; } }
+@media (min-width: 768px) { .hero-cta { margin-top: 32px; } }
 
 /* bottom info panel */
 .panel-wrap { position: relative; z-index: 10; margin-top: auto; width: 100%; max-width: 1024px; padding: 40px 16px 0; }
-@media (min-width: 640px) { .panel-wrap { padding: 48px 24px 0; } }
+@media (min-width: 640px) { .panel-wrap { padding: 32px 24px 0; } }
 .panel {
   background: rgba(255, 255, 255, 0.9); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
   border: 1px solid var(--gray200); border-bottom: 0;
   padding: 32px 20px 24px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 @media (min-width: 640px) { .panel { padding: 48px 32px 32px; } }
-@media (min-width: 768px) { .panel { padding: 64px 48px 40px; } }
+@media (min-width: 768px) { .panel { padding: 48px 48px 32px; } }
 .panel-top { display: grid; gap: 24px; }
 @media (min-width: 640px) { .panel-top { gap: 32px; } }
-@media (min-width: 768px) { .panel-top { grid-template-columns: 1fr 1fr; gap: 64px; } }
+@media (min-width: 768px) { .panel-top { grid-template-columns: 1.25fr 1fr; gap: 56px; } }
 .panel h2 { margin-top: 12px; font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1.25; letter-spacing: -0.025em; }
 @media (min-width: 640px) { .panel h2 { font-size: 30px; } }
-@media (min-width: 768px) { .panel h2 { font-size: 36px; } }
+@media (min-width: 768px) { .panel h2 { font-size: 32px; } }
+@media (min-width: 1024px) and (max-height: 820px) { .display { font-size: 80px; } .hero-copy { padding-top: 96px; } }
 .panel .body { display: flex; align-items: flex-end; }
 .panel .body p { font-size: 14px; color: var(--ink70); line-height: 1.625; }
 @media (min-width: 768px) { .panel .body p { font-size: 15px; } }
@@ -363,7 +364,7 @@ button { background: none; border: 0; cursor: pointer; padding: 0; }
    Footer
    ========================================================================== */
 .footer { padding: 72px 24px 0; }
-@media (min-width: 768px) { .footer { padding: 88px 56px 0; } }
+@media (min-width: 768px) { .footer { padding: 88px 56px 0; } .wordmark { font-size: min(calc((100vw - 112px) / 10.5), 106px) !important; } }
 .foot-grid { display: grid; gap: 36px; grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 900px) { .foot-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; } }
 .foot-grid .co { grid-column: 1 / -1; }
@@ -373,7 +374,7 @@ button { background: none; border: 0; cursor: pointer; padding: 0; }
 .foot-grid li + li { margin-top: 10px; }
 .foot-grid a { font-size: 14px; color: var(--ink70); transition: color 0.2s ease; }
 .foot-grid a:hover { color: var(--red); }
-.wordmark { margin-top: 64px; font-family: var(--serif); font-weight: 400; white-space: nowrap; font-size: min(8.6vw, 132px); line-height: 0.95; letter-spacing: -0.055em; color: var(--ink); overflow: hidden; padding-bottom: 0.08em; }
+.wordmark { margin-top: 64px; font-family: var(--serif); font-weight: 400; white-space: nowrap; font-size: min(calc((100vw - 48px) / 10.5), 106px); line-height: 0.95; letter-spacing: -0.055em; color: var(--ink); overflow: hidden; padding-bottom: 0.08em; }
 .wordmark em { font-style: normal; color: var(--red); }
 .foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 20px 0 28px; border-top: 1px solid var(--gray200); font-size: 13px; color: var(--ink50); }
 .foot-bottom nav { display: flex; gap: 20px; }
