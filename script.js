@@ -257,3 +257,37 @@
   }
   const yr = $('#year'); if (yr) yr.textContent = new Date().getFullYear();
 })();
+
+/* ---------- ethos: pinned, scroll-driven ---------- */
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-ethos]').forEach((root) => {
+    const track = root.querySelector('.eth-track');
+    const items = [...root.querySelectorAll('.eth-item')], btns = [...root.querySelectorAll('.eth-nav button')];
+    const pts = [...root.querySelectorAll('.pt')], dts = [...root.querySelectorAll('.dt')];
+    const rot = root.querySelector('.eth-rot'), cnt = root.querySelector('[data-eth-count]');
+    const N = items.length; let cur = -1, ticking = false;
+    const set = (i) => {
+      if (i === cur) return; cur = i;
+      items.forEach((it, k) => { it.classList.toggle('on', k === i); it.classList.toggle('out', k < i); it.setAttribute('aria-hidden', String(k !== i)); });
+      btns.forEach((b, k) => { b.classList.toggle('on', k === i); b.setAttribute('aria-current', k === i ? 'step' : 'false'); });
+      [pts, dts].forEach((arr) => arr.forEach((p, k) => { p.classList.toggle('on', k === i); p.classList.toggle('past', k < i); }));
+      if (cnt) cnt.textContent = String(i + 1).padStart(2, '0');
+    };
+    const upd = () => {
+      ticking = false;
+      const r = track.getBoundingClientRect(), span = r.height - innerHeight;
+      const p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0, f = p * N;
+      set(Math.min(N - 1, Math.floor(f)));
+      btns.forEach((b, k) => b.style.setProperty('--f', String(Math.min(1, Math.max(0, f - k)))));
+      if (rot && !reduce) rot.style.transform = `rotate(${(p * 288).toFixed(2)}deg)`;
+    };
+    btns.forEach((b, k) => b.addEventListener('click', () => {
+      const r = track.getBoundingClientRect(), span = r.height - innerHeight;
+      scrollTo({ top: scrollY + r.top + span * (k + 0.5) / N, behavior: reduce ? 'auto' : 'smooth' });
+    }));
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
+    addEventListener('resize', upd);
+    upd();
+  });
+})();
