@@ -553,3 +553,6 @@ main { position: relative; z-index: 2; background: #fff; }
 .menu-open .nav .logo .lg-c { display: block; }
 .menu-open .nav .logo .lg-w { display: none; }
 .fgrid .co .flogo { display: block; width: min(280px, 72%); height: auto; }
+
+/* three-item dropdown (Services) */
+.dd.dd-3 { width: 300px; grid-template-columns: 1fr; }
