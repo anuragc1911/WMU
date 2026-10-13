@@ -545,8 +545,8 @@ main { position: relative; z-index: 2; background: #fff; }
 }
 
 /* ---------- WMU logo ---------- */
-.logo img { display: block; height: 46px; width: auto; aspect-ratio: 406 / 146; }
-@media (max-width: 560px) { .logo img { height: 38px; } }
+.logo img { display: block; height: 54px; width: auto; aspect-ratio: 406 / 146; }
+@media (max-width: 560px) { .logo img { height: 42px; } }
 .logo .lg-w { display: none; }
 .nav[data-theme="ink"] .logo .lg-c { display: none; }
 .nav[data-theme="ink"] .logo .lg-w { display: block; }
