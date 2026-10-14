@@ -648,3 +648,10 @@ main { position: relative; z-index: 2; background: #fff; }
 .open > .ix-row.acc-head .go svg { transform: rotate(45deg); }
 .ix.hovering .ix-row.acc-head { opacity: 1 !important; }
 .ix.hovering .ix-row:not(.on) { opacity: 0.5; }
+
+.stages button small { display: none; }
+@media (max-width: 959px) {
+  .stages { gap: 18px; }
+  .stages button, .stages button.on, .stages button:hover { color: var(--ink); transform: none; pointer-events: none; padding: 0; }
+  .stages button small { display: block; margin-top: 4px; font: 400 15px/1.5 var(--sans); letter-spacing: 0; color: var(--ink2); }
+}
