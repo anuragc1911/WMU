@@ -640,3 +640,11 @@ main { position: relative; z-index: 2; background: #fff; }
 .t-blue .seg { background: rgba(255, 255, 255, 0.1); }
 .t-blue .seg:hover { background: rgba(255, 255, 255, 0.15); }
 .link:hover { color: var(--blue); }
+
+.nav .btn, .mnav .btn { border-radius: 0; }
+.ix-row.acc-head.on .go { background: var(--btint2); color: var(--blue); transform: none; }
+.open > .ix-row.acc-head .go { background: var(--blue); color: #fff; }
+.ix-row.acc-head .go svg { transition: transform 0.3s var(--ease); }
+.open > .ix-row.acc-head .go svg { transform: rotate(45deg); }
+.ix.hovering .ix-row.acc-head { opacity: 1 !important; }
+.ix.hovering .ix-row:not(.on) { opacity: 0.5; }
