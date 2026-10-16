@@ -291,3 +291,12 @@
     upd();
   });
 })();
+
+/* ---------- phone micro icons: draw in once when visible ---------- */
+(() => {
+  const els = document.querySelectorAll('.mi');
+  if (!els.length) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('on')); return; }
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { threshold: 0.6 });
+  els.forEach((e) => io.observe(e));
+})();
