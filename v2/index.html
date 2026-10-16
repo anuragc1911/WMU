@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wealth Managers United — Holistic, objective and independent wealth management</title>
+  <meta name="description" content="Holistic, objective and independent wealth management for ultra high net-worth families, since 2011.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/brand/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.16?plugins=typography"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: { primary: '#d71920', 'primary-dark': '#b3131a', secondary: '#3c53a3', 'secondary-dark': '#2e4189', dark: '#111928', 'dark-2': '#1f2a37', body: '#637381', stroke: '#DFE4EA', 'gray-1': '#F9FAFB', 'gray-2': '#F3F4F6', gold: '#e2b93b' },
+      boxShadow: { card: '0px 1px 3px rgba(17,25,40,.08), 0px 8px 24px -12px rgba(17,25,40,.12)', pop: '0px 20px 50px -20px rgba(17,25,40,.25)' }
+    } } };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { -webkit-font-smoothing: antialiased; }
+    ::selection { background: #d71920; color: #fff; }
+    [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    [data-reveal][data-shown] { opacity: 1; transform: none; }
+    .ico .a { fill: #d71920; stroke: none; }
+    .on-dark .ico .a { fill: #fff; }
+    .article .inline { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: center; }
+    .article .inline img { margin: 0; }
+    .article .inline .stack > * + * { margin-top: 12px; }
+    .article .risk-grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+    .article .risk { background: #F3F4F6; padding: 14px; }
+    .article .risk svg { width: 32px; height: 32px; }
+    .article .risk h4 { margin: 8px 0 4px; font-size: 14px; }
+    .article .risk p { margin: 0; font-size: 13px; }
+    .article .table-wrap { overflow-x: auto; }
+    .article figure img { margin-left: auto; margin-right: auto; max-height: 340px; width: auto; }
+    .article .lede { font-size: 1.2em; color: #111928; }
+    .article .sign { color: #d71920; font-weight: 600; }
+    @media (max-width: 560px) { .article .inline { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } [data-reveal] { opacity: 1; transform: none; transition: none; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-body">
+  <div id="root"></div>
+  <noscript><p style="padding:24px">This site needs JavaScript. The classic site is at <a href="../index.html">../index.html</a>.</p></noscript>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>
