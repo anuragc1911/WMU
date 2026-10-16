@@ -319,13 +319,13 @@ float swirl(vec2 q,float t){for(int i=0;i<3;i++){q+=.35*vec2(sin(q.y*2.2+t),cos(
 vec3 field(vec2 uv,float asp){
   vec2 p=vec2(uv.x*asp,uv.y);float t=T*.15;
   vec3 col=mix(vec3(.941),vec3(1.),swirl(p*1.2,t));
-  vec2 a1=vec2(asp*(.74+.10*sin(t*1.3)),.72+.10*cos(t*1.1));
-  vec2 a2=vec2(asp*(.90+.07*cos(t*.9)),.40+.14*sin(t*1.4));
-  float r1=.80*exp(-dot(p-a1,p-a1)/.07);float r2=.72*exp(-dot(p-a2,p-a2)/.055);
-  vec3 cs=RED*r1+BLUE*r2;float tot=r1+r2;
-  for(int i=0;i<${N};i++){vec4 q=P[i];if(q.z<.004)continue;vec2 c=vec2(q.x*asp,q.y);float g=q.z*exp(-dot(p-c,p-c)/.022);cs+=mix(RED,BLUE,q.w)*g;tot+=g;}
-  float op=1.-exp(-tot*1.6);
-  return mix(col,cs/max(tot,1e-4),op*.88);
+  vec2 b1=vec2(asp*(.93+.04*cos(t*.9)),.22+.10*sin(t*1.2));
+  float rb=.75*exp(-dot(p-b1,p-b1)/.05);
+  col=mix(col,BLUE,(1.-exp(-rb*1.6))*.85);
+  vec2 a1=vec2(asp*(.70+.10*sin(t*1.3)),.76+.08*cos(t*1.1));
+  float tot=.8*exp(-dot(p-a1,p-a1)/.06);
+  for(int i=0;i<${N};i++){vec4 q=P[i];if(q.z<.004)continue;vec2 c=vec2(q.x*asp,q.y);tot+=q.z*exp(-dot(p-c,p-c)/.022);}
+  return mix(col,RED,(1.-exp(-tot*1.6))*.88);
 }
 void main(){
   vec2 uv=gl_FragCoord.xy/R;float asp=R.x/R.y;
