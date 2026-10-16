@@ -726,3 +726,6 @@ main { position: relative; z-index: 2; background: #fff; }
 .mi { display: none !important; }
 .h2[data-r]::after { display: none !important; }
 .vision .h2 { max-width: 24ch; }
+
+.ix-row > span:first-child { display: block !important; }
+.acc-head .mi + b, .acc-head b { flex: 1; }
