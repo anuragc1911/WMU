@@ -318,14 +318,12 @@ float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}
 float swirl(vec2 q,float t){for(int i=0;i<3;i++){q+=.35*vec2(sin(q.y*2.2+t),cos(q.x*1.9-t*.8));}return .5+.5*sin(q.x*1.7+q.y*1.2);}
 vec3 field(vec2 uv,float asp){
   vec2 p=vec2(uv.x*asp,uv.y);float t=T*.15;
-  vec3 col=mix(vec3(.941),vec3(1.),swirl(p*1.2,t));
-  vec2 b1=vec2(asp*(.93+.04*cos(t*.9)),.22+.10*sin(t*1.2));
-  float rb=.75*exp(-dot(p-b1,p-b1)/.05);
-  col=mix(col,BLUE,(1.-exp(-rb*1.6))*.85);
-  vec2 a1=vec2(asp*(.70+.10*sin(t*1.3)),.76+.08*cos(t*1.1));
-  float tot=.8*exp(-dot(p-a1,p-a1)/.06);
-  for(int i=0;i<${N};i++){vec4 q=P[i];if(q.z<.004)continue;vec2 c=vec2(q.x*asp,q.y);tot+=q.z*exp(-dot(p-c,p-c)/.022);}
-  return mix(col,RED,(1.-exp(-tot*1.6))*.88);
+  vec3 col=mix(vec3(.925),vec3(1.),swirl(p*1.1,t));
+  vec2 a1=vec2(asp*(.72+.12*sin(t*1.2)),.70+.10*cos(t*1.0));
+  vec2 a2=vec2(asp*(.92+.06*cos(t*.8)),.30+.12*sin(t*1.3));
+  float sh=.55*exp(-dot(p-a1,p-a1)/.09)+.40*exp(-dot(p-a2,p-a2)/.07);
+  for(int i=0;i<${N};i++){vec4 q=P[i];if(q.z<.004)continue;vec2 c=vec2(q.x*asp,q.y);sh+=q.z*.6*exp(-dot(p-c,p-c)/.02);}
+  return mix(col,vec3(.80),(1.-exp(-sh*1.4))*.55);
 }
 void main(){
   vec2 uv=gl_FragCoord.xy/R;float asp=R.x/R.y;
@@ -336,7 +334,7 @@ void main(){
   vec2 off=(dir/vec2(asp,1.))*bend*.03;
   vec3 A=field(uv+off,asp);vec3 B=field(uv+off*1.22,asp);
   vec3 c=vec3(B.r,A.g,A.b);
-  c+=.12*smoothstep(.82,1.,1.-abs(pr-.35));
+  c+=.14*smoothstep(.82,1.,1.-abs(pr-.35));
   c*=1.-.05*pow(abs(pr),6.);
   c+=(hash(gl_FragCoord.xy+fract(T)*97.)-.5)*.05;
   gl_FragColor=vec4(c,1.);
