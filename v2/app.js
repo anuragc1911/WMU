@@ -296,7 +296,7 @@ function HomeHero() {
             <img src=${A + 'people/jay.jpg'} alt="Jay Prakash Pai, Founder & CEO" className="col-span-3 aspect-[4/5] w-full object-cover" />
             <div className="col-span-2 flex flex-col gap-4">
               <img src=${A + 'people/kavitha.jpg'} alt="Kavitha Jayaram, Co-founder & COO" className="aspect-[4/5] w-full object-cover" />
-              <div className="flex flex-1 flex-col justify-center bg-secondary p-5 text-white on-dark"><span className="text-3xl font-bold tabular-nums sm:text-4xl">INR 25 Cr</span><span className="mt-1 text-sm text-white/80">Family office minimum</span></div>
+              <div className="flex flex-1 flex-col justify-center bg-secondary p-5 text-white on-dark"><span className="whitespace-nowrap text-2xl font-bold tabular-nums sm:text-3xl xl:text-4xl">INR 25 Cr</span><span className="mt-1 text-sm text-white/80">Family office minimum</span></div>
             </div>
             <a href="#awards" onClick=${jump('awards')} className="absolute -bottom-5 left-4 flex items-center gap-3 bg-white px-4 py-3 shadow-pop transition hover:-translate-y-0.5 sm:left-6">
               <img src=${A + 'brand/apple-touch-icon.png'} alt="" className="h-9 w-9" /><span><span className="block text-sm font-semibold text-dark">KAMFA award winner</span><span className="block text-xs">5 awards, 2011–2013</span></span></a>
