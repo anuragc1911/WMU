@@ -719,3 +719,5 @@ main { position: relative; z-index: 2; background: #fff; }
   .stat > span { font-size: 13px; margin-top: 6px; }
 }
 @media (prefers-reduced-motion: reduce) { .js .mi :not(.a) { stroke-dashoffset: 0; } .js .mi .a { transform: none; } .h2[data-r]::after { transform: none; } }
+
+@media (max-width: 759px) { .trio > div { display: flex; align-items: center; gap: 14px; } .trio .mi { margin-bottom: 0; } .trio { gap: 18px; } }
