@@ -300,3 +300,94 @@
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { threshold: 0.6 });
   els.forEach((e) => io.observe(e));
 })();
+
+/* ---------- hero shader: swirl + chroma flow + fluted glass + grain ---------- */
+(() => {
+  const host = document.querySelector('[data-shader]');
+  if (!host) return;
+  const cv = host.querySelector('canvas');
+  const gl = cv.getContext('webgl', { antialias: false, premultipliedAlpha: false, alpha: false });
+  if (!gl) { host.classList.add('fallback'); return; }
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const N = 24;
+  const VS = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+  const FS = `precision highp float;
+uniform vec2 R;uniform float T;uniform vec4 P[${N}];
+const vec3 RED=vec3(.843,.098,.125);const vec3 BLUE=vec3(.235,.325,.639);
+float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}
+float swirl(vec2 q,float t){for(int i=0;i<3;i++){q+=.35*vec2(sin(q.y*2.2+t),cos(q.x*1.9-t*.8));}return .5+.5*sin(q.x*1.7+q.y*1.2);}
+vec3 field(vec2 uv,float asp){
+  vec2 p=vec2(uv.x*asp,uv.y);float t=T*.15;
+  vec3 col=mix(vec3(.941),vec3(1.),swirl(p*1.2,t));
+  vec2 a1=vec2(asp*(.74+.10*sin(t*1.3)),.72+.10*cos(t*1.1));
+  vec2 a2=vec2(asp*(.90+.07*cos(t*.9)),.40+.14*sin(t*1.4));
+  float r1=.80*exp(-dot(p-a1,p-a1)/.07);float r2=.72*exp(-dot(p-a2,p-a2)/.055);
+  vec3 cs=RED*r1+BLUE*r2;float tot=r1+r2;
+  for(int i=0;i<${N};i++){vec4 q=P[i];if(q.z<.004)continue;vec2 c=vec2(q.x*asp,q.y);float g=q.z*exp(-dot(p-c,p-c)/.022);cs+=mix(RED,BLUE,q.w)*g;tot+=g;}
+  float op=1.-exp(-tot*1.6);
+  return mix(col,cs/max(tot,1e-4),op*.88);
+}
+void main(){
+  vec2 uv=gl_FragCoord.xy/R;float asp=R.x/R.y;
+  float ang=radians(31.);vec2 dir=vec2(cos(ang),sin(ang));
+  float fl=dot(vec2(uv.x*asp,uv.y),dir)*8./asp;
+  float pr=(fract(fl)-.5)*2.;
+  float bend=pr*sqrt(max(0.,1.-pr*pr*.9));
+  vec2 off=(dir/vec2(asp,1.))*bend*.03;
+  vec3 A=field(uv+off,asp);vec3 B=field(uv+off*1.22,asp);
+  vec3 c=vec3(B.r,A.g,A.b);
+  c+=.12*smoothstep(.82,1.,1.-abs(pr-.35));
+  c*=1.-.05*pow(abs(pr),6.);
+  c+=(hash(gl_FragCoord.xy+fract(T)*97.)-.5)*.05;
+  gl_FragColor=vec4(c,1.);
+}`;
+  const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; };
+  const vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
+  if (!vs || !fs) { host.classList.add('fallback'); return; }
+  const pg = gl.createProgram(); gl.attachShader(pg, vs); gl.attachShader(pg, fs); gl.linkProgram(pg);
+  if (!gl.getProgramParameter(pg, gl.LINK_STATUS)) { host.classList.add('fallback'); return; }
+  gl.useProgram(pg);
+  const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(pg, 'a'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  const uR = gl.getUniformLocation(pg, 'R'), uT = gl.getUniformLocation(pg, 'T'), uP = gl.getUniformLocation(pg, 'P');
+  const pts = new Float32Array(N * 4); let head = 0;
+  const small = innerWidth < 768;
+  const resize = () => {
+    const sc = small ? 0.55 : 0.75;
+    const w = Math.max(1, Math.round(host.clientWidth * sc)), h = Math.max(1, Math.round(host.clientHeight * sc));
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; gl.viewport(0, 0, w, h); gl.uniform2f(uR, w, h); }
+  };
+  resize(); addEventListener('resize', resize);
+  const draw = (t) => { gl.uniform1f(uT, t); gl.uniform4fv(uP, pts); gl.drawArrays(gl.TRIANGLES, 0, 3); };
+  if (reduce) { draw(8); return; }
+  let tx = -1, ty = -1, px = -1, py = -1, vis = true, raf = 0, last = 0;
+  const feed = (cx, cy) => {
+    const r = host.getBoundingClientRect();
+    const x = (cx - r.left) / r.width, y = 1 - (cy - r.top) / r.height;
+    if (x < 0 || x > 1 || y < 0 || y > 1) return;
+    tx = x; ty = y; if (px < 0) { px = x; py = y; }
+  };
+  addEventListener('pointermove', (e) => feed(e.clientX, e.clientY), { passive: true });
+  addEventListener('touchmove', (e) => { const t = e.touches[0]; if (t) feed(t.clientX, t.clientY); }, { passive: true });
+  const t0 = performance.now();
+  const frame = (now) => {
+    raf = requestAnimationFrame(frame);
+    if (!vis || document.hidden) return;
+    if (small && now - last < 32) return;
+    last = now;
+    for (let i = 0; i < N; i++) pts[i * 4 + 2] *= 0.975;
+    if (tx >= 0) {
+      const nx = px + (tx - px) * 0.18, ny = py + (ty - py) * 0.18;
+      const dx = nx - px, dy = ny - py, sp = Math.hypot(dx, dy);
+      if (sp > 0.0008) {
+        const o = head * 4; pts[o] = nx; pts[o + 1] = ny; pts[o + 2] = Math.min(0.9, sp * 40); pts[o + 3] = Math.abs(dy) / (Math.abs(dx) + Math.abs(dy) + 1e-5);
+        head = (head + 1) % N;
+      }
+      px = nx; py = ny;
+    }
+    draw((now - t0) / 1000);
+  };
+  new IntersectionObserver(([e]) => { vis = e.isIntersecting; }).observe(host);
+  raf = requestAnimationFrame(frame);
+})();
