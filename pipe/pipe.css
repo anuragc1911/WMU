@@ -314,3 +314,74 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
 .foot nav { color: var(--payne-l); }
 .foot p { color: var(--payne); }
 ::selection { background: var(--payne); color: #fff; }
+
+/* ==========================================================================
+   Light theme: white background, ink text only, Payne's grey surfaces
+   ========================================================================== */
+:root { --bg: #fff; --t1: #111418; --t2: #536878; --t3: #6b7d8a; --line: rgba(83,104,120,.22); --s1: #f3f6f8; --s2: #e9eef1; --s3: #dfe6eb; }
+html, body { background: #fff; }
+body { color: var(--t1); }
+.muted, .count, .svc-head .muted, .links a, .frole, .note, .aw .y, .assets .n, .st span, .st sup, .who span, .foot nav { color: var(--payne); }
+.small, .sub { color: #4a5b68; }
+.links a:hover, .links a.on, .foot nav a:hover { color: var(--t1); }
+.right .muted:hover { color: var(--t1); }
+
+/* nav + menu */
+.nav { background: rgba(255,255,255,.9); box-shadow: 0 1px 0 var(--line); }
+.burger i, .burger i::before, .burger i::after { background: var(--t1); }
+.mmenu { background: #fff; color: var(--t1); }
+
+/* services card on the Payne's grey stage */
+.card { background: #fff; border-color: rgba(255,255,255,.95); color: var(--t1); box-shadow: 0 18px 40px -20px rgba(17,20,24,.35); }
+.ghost { background: #f3f6f8; border-color: rgba(255,255,255,.9); }
+.c-big span, .c-row b { color: var(--t1); }
+.c-row { color: var(--payne); }
+.c-top em { background: var(--s2); color: var(--payne-d); }
+.bar, .bar.steps i { background: var(--s3); }
+.b-white, .bar.steps i.b-white { background: var(--payne); }
+.tabs button { border-color: var(--line); color: var(--payne); }
+.tabs button:hover { color: var(--t1); border-color: var(--payne); }
+.tabs button.on { color: #fff; }
+
+/* tiles + stats */
+.tile { background: var(--s2); }
+.tile figcaption b, .tm b { color: var(--t1); }
+.st b { background: linear-gradient(180deg, var(--t1) 35%, var(--payne)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ethos */
+.quote { color: var(--t1); }
+.num { color: #fff; }
+.dots button { background: var(--s3); }
+.dots button.on { background: var(--red); }
+
+/* products card (Payne's grey) */
+.mix-r .card.solo { color: #fff; box-shadow: none; }
+.mix-r .card.solo .c-big span, .mix-r .card.solo .c-row, .mix-r .card.solo .c-row b, .mix-r .card.solo .ticks { color: #fff; }
+.mix-r .card.solo .c-top em { background: var(--payne-dd); color: #dbe3e8; }
+.mix-r .card.solo .bar { background: var(--payne-dd); }
+.assets li:hover { background: var(--s1); }
+
+/* people */
+.fname, .fline { color: var(--t1); }
+.ftabs button { border-color: var(--line); color: var(--payne); }
+.ftabs button.on { color: #fff; }
+.tm { background: var(--s1); }
+.tm:hover { background: var(--payne); }
+.tm:hover b, .tm:hover span { color: #fff; }
+.strip { scrollbar-color: var(--s3) transparent; }
+
+/* awards */
+.aw li:hover { background: var(--s1); }
+.aw .p { background: var(--s2); color: var(--payne-d); border-color: var(--line); }
+.aw b { color: var(--t1); }
+
+/* contact */
+.phone { color: var(--t1); }
+.phone:hover { color: var(--payne); }
+.ct-f { background: var(--payne); border-color: var(--payne); }
+.ct-f input:not([type=checkbox]) { background: #fff; border-color: transparent; color: var(--t1); }
+.ct-f input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(224,38,45,.18); }
+.ct-f label span, .chk, .status { color: #fff; }
+
+/* footer */
+.foot p { color: var(--payne); }
