@@ -385,3 +385,6 @@ body { color: var(--t1); }
 
 /* footer */
 .foot p { color: var(--payne); }
+
+.who .num { color: #fff; }
+.tile figcaption { margin-top: 0; padding: 12px 14px 14px; border-top: 2px solid var(--payne); }
