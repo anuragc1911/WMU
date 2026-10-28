@@ -816,3 +816,6 @@ html { scrollbar-color: var(--payne-l) transparent; }
 @keyframes wfPlane { to { background-position: 0 64px; } }
 @media (max-width: 759px) { .wf-cube { display: none; } .wf-globe { opacity: .28; right: -30%; top: 20%; } .wf-grid { opacity: .35; } }
 @media (prefers-reduced-motion: reduce) { .wf, .wf * { animation: none !important; } }
+
+@media (min-width: 760px) and (max-width: 1099px) { .wf-globe { width: min(320px, 40vw); right: -12%; opacity: .38; } }
+.statement { position: relative; z-index: 1; }

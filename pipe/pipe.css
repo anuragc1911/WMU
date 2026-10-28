@@ -431,3 +431,6 @@ body { color: var(--t1); }
 
 .banner .wf-grid { height: 100%; opacity: .55; }
 .stage .wf-cube.sm { bottom: 20px; right: 20px; }
+
+@media (min-width: 760px) and (max-width: 1099px) { .wf-globe { width: min(320px, 40vw); right: -12%; opacity: .38; } }
+.statement { position: relative; z-index: 1; }
