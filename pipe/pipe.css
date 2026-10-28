@@ -388,17 +388,3 @@ body { color: var(--t1); }
 
 .who .num { color: #fff; }
 .tile figcaption { margin-top: 0; padding: 12px 14px 14px; border-top: 2px solid var(--payne); }
-
-/* ==========================================================================
-   Payne's grey navbar
-   ========================================================================== */
-.nav { background: var(--payne) !important; box-shadow: none !important; color: #fff; }
-.links a { color: rgba(255,255,255,.72) !important; }
-.links a:hover, .links a.on { color: #fff !important; }
-.right .muted { color: rgba(255,255,255,.72) !important; }
-.right .muted:hover { color: #fff !important; }
-.right .red { color: #fff; background: var(--red); padding: 8px 14px; border-radius: 4px; }
-.right .red:hover { background: var(--red-d); color: #fff; }
-.burger i, .burger i::before, .burger i::after { background: #fff !important; }
-.open .burger i { background: transparent !important; }
-.mmenu { background: var(--payne-d) !important; color: #fff !important; }
