@@ -388,3 +388,46 @@ body { color: var(--t1); }
 
 .who .num { color: #fff; }
 .tile figcaption { margin-top: 0; padding: 12px 14px 14px; border-top: 2px solid var(--payne); }
+
+/* ==========================================================================
+   Subtle wireframe animations
+   ========================================================================== */
+.wf-host { position: relative; overflow-x: clip; }
+.wf-host > *:not(.wf) { position: relative; z-index: 1; }
+.wf { position: absolute; z-index: 0; pointer-events: none; }
+.wf.paused, .wf.paused * { animation-play-state: paused !important; }
+.wf-globe { right: -4%; top: 50%; width: min(440px, 62vw); aspect-ratio: 1; transform: translateY(-50%); opacity: .55; }
+.wf-globe svg { width: 100%; height: 100%; overflow: visible; }
+.wf-globe ellipse, .wf-globe circle { fill: none; stroke: #8fa1ae; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.wf-globe .tilt { transform: rotate(-16deg); transform-origin: 0 0; }
+.wf-globe .mer { transform-box: fill-box; transform-origin: center; animation: wfMer 22s ease-in-out infinite; }
+@keyframes wfMer { 0% { transform: scaleX(1); } 50% { transform: scaleX(-1); } 100% { transform: scaleX(1); } }
+.wf-globe .orbit { transform-box: view-box; transform-origin: 0 0; animation: wfSpin 90s linear infinite; stroke-dasharray: 2 6; }
+@keyframes wfSpin { to { transform: rotate(360deg); } }
+.wf-light ellipse, .wf-light circle { stroke: rgba(255,255,255,.42); }
+.wf-cube { right: 7%; top: 72px; width: 150px; height: 150px; perspective: 700px; opacity: .7; }
+.wf-cube .cube { position: absolute; inset: 0; transform-style: preserve-3d; animation: wfCube 30s linear infinite; --h: 75px; }
+.wf-cube .cube.inner { inset: 37px; --h: 38px; animation-direction: reverse; animation-duration: 22s; }
+.wf-cube .cube i { position: absolute; inset: 0; border: 1px solid #8fa1ae; }
+.wf-cube .cube.inner i { border-color: rgba(215,25,32,.45); }
+.wf-cube .cube i:nth-child(1) { transform: translateZ(var(--h)); }
+.wf-cube .cube i:nth-child(2) { transform: rotateY(180deg) translateZ(var(--h)); }
+.wf-cube .cube i:nth-child(3) { transform: rotateY(90deg) translateZ(var(--h)); }
+.wf-cube .cube i:nth-child(4) { transform: rotateY(-90deg) translateZ(var(--h)); }
+.wf-cube .cube i:nth-child(5) { transform: rotateX(90deg) translateZ(var(--h)); }
+.wf-cube .cube i:nth-child(6) { transform: rotateX(-90deg) translateZ(var(--h)); }
+@keyframes wfCube { from { transform: rotateX(-22deg) rotateY(0); } to { transform: rotateX(-22deg) rotateY(360deg); } }
+.wf-cube.sm { width: 96px; height: 96px; top: auto; bottom: 48px; right: 5%; }
+.wf-cube.sm .cube { --h: 48px; } .wf-cube.sm .cube.inner { inset: 24px; --h: 24px; }
+.wf-light.wf-cube .cube i { border-color: rgba(255,255,255,.5); }
+.wf-grid { left: 0; right: 0; bottom: 0; height: 58%; perspective: 420px; overflow: hidden; opacity: .5;
+  -webkit-mask-image: linear-gradient(to top, #000 10%, transparent); mask-image: linear-gradient(to top, #000 10%, transparent); }
+.wf-plane { position: absolute; left: -60%; right: -60%; bottom: 0; height: 220%; transform: rotateX(74deg); transform-origin: 50% 100%;
+  background-image: linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px);
+  background-size: 64px 64px; animation: wfPlane 9s linear infinite; }
+@keyframes wfPlane { to { background-position: 0 64px; } }
+@media (max-width: 759px) { .wf-cube { display: none; } .wf-globe { opacity: .28; right: -30%; top: 20%; } .wf-grid { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .wf, .wf * { animation: none !important; } }
+
+.banner .wf-grid { height: 100%; opacity: .55; }
+.stage .wf-cube.sm { bottom: 20px; right: 20px; }
