@@ -73,3 +73,16 @@
   });
   $('#yr').textContent = new Date().getFullYear();
 })();
+
+/* refinements: keyboard tabs + pause autoplay on hover/focus */
+(() => {
+  const tabs = [...document.querySelectorAll('.tabs button')];
+  tabs.forEach((t, i) => t.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+    n.focus(); n.click();
+  }));
+  const svc = document.querySelector('[data-svc]');
+  if (svc) ['mouseenter', 'focusin'].forEach((ev) => svc.addEventListener(ev, () => { const t = tabs.find((x) => x.classList.contains('on')); if (t) t.click(); }, { once: true }));
+})();

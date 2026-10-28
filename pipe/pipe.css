@@ -402,3 +402,50 @@ body { color: var(--t1); }
 .burger i, .burger i::before, .burger i::after { background: #fff !important; }
 .open .burger i { background: transparent !important; }
 .mmenu { background: var(--payne-d) !important; color: #fff !important; }
+
+/* ==========================================================================
+   Refinement pass: two founders, type scale, feedback
+   ========================================================================== */
+h2 { font-size: clamp(26px, 2.6vw, 36px); line-height: 1.12; letter-spacing: -.022em; text-wrap: balance; max-width: 20ch; }
+h1 { text-wrap: balance; }
+.sub { text-wrap: pretty; }
+section { padding-top: clamp(88px, 13vh, 150px); padding-bottom: clamp(88px, 13vh, 150px); }
+.btn:active, .tabs button:active { transform: scale(.97); }
+.btn:focus-visible, .tabs button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+/* hero: staggered founder pair */
+.hero-r { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: none !important; overflow: visible; min-height: 0; }
+.hero-r .fd { position: relative; overflow: hidden; background: var(--payne); min-height: 58vh; }
+.hero-r .fd-2 { margin-top: clamp(32px, 7vh, 72px); }
+.hero-r .fd:first-child { margin-bottom: clamp(32px, 7vh, 72px); }
+.hero-r .fd img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; filter: grayscale(1) contrast(1.05); transform: scale(1.06); transition: transform 1.6s var(--ease); }
+.hero-r.in .fd img { transform: none; }
+.hero-r .fd-2 img { transition-delay: .12s; }
+@media (hover: hover) { .hero-r .fd:hover img { transform: scale(1.025); transition-duration: .9s; } }
+.hero-r figcaption { left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 2px; padding: 12px 14px 13px; background: var(--payne); color: #fff; font-size: 13px; }
+.hero-r figcaption b { font-weight: 500; }
+.hero-r figcaption span { font-size: 12px; color: rgba(255,255,255,.75); }
+@media (max-width: 899px) { .hero-r .fd { min-height: 46vh; } }
+@media (max-width: 560px) { .hero-r .fd { min-height: 300px; } .hero-r figcaption { padding: 10px 11px; } }
+
+/* people: two equal founder cards */
+.pp-head { display: grid; gap: 14px; margin-bottom: 40px; }
+@media (min-width: 960px) { .pp-head { grid-template-columns: 1fr 1fr; align-items: end; gap: 64px; } }
+.founders2 { display: grid; gap: 16px; }
+@media (min-width: 900px) { .founders2 { grid-template-columns: 1fr 1fr; } }
+.f2 { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); background: var(--s1); transition: background-color .3s var(--ease); }
+.f2:hover { background: var(--s2); }
+.f2 figure { overflow: hidden; background: var(--payne); }
+.f2 img { width: 100%; height: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 15%; filter: grayscale(1); transition: transform 1.1s var(--ease); }
+.f2:hover img { transform: scale(1.03); }
+.f2-body { display: flex; flex-direction: column; padding: clamp(18px, 2.4vw, 30px); }
+.f2 .role { font-size: 12px; color: var(--payne); letter-spacing: .01em; }
+.f2 h3 { margin: 6px 0 0; font-weight: 400; font-size: clamp(22px, 2vw, 28px); letter-spacing: -.02em; line-height: 1.15; }
+.f2 p { margin-top: 12px; font-size: 14px; line-height: 1.55; color: #4a5b68; }
+.f2-stat { margin-top: auto; padding-top: 22px; display: flex; align-items: flex-end; gap: 10px; border-top: 1px solid var(--line); }
+.f2-stat b { font-weight: 300; font-size: clamp(40px, 4vw, 56px); line-height: .9; letter-spacing: -.04em; font-variant-numeric: tabular-nums; color: var(--t1); }
+.f2-stat span { font-size: 12px; color: var(--payne); padding-bottom: 6px; max-width: 12ch; line-height: 1.35; }
+.f2-link { margin-top: 14px; font-size: 13px; color: var(--payne-d); text-decoration: underline; text-underline-offset: 4px; align-self: flex-start; }
+.f2-link:hover { color: var(--red); }
+@media (max-width: 520px) { .f2 { grid-template-columns: 1fr; } .f2 img { aspect-ratio: 4 / 3; } }
+.people .strip { margin-top: 48px; }
